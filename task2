@@ -1,0 +1,160 @@
+import java.io.*;
+import java.util.*;
+
+public class main {
+    static void output1(String[][][] matx, int n, int m, int H) {
+        System.out.println();
+        for (int z = 0; z < H; z++) {
+            for (int j = 0; j < n; j++) {
+                for (int i = 0; i < m; i++) {
+                    System.out.print(matx[i][j][z]);
+                    System.out.print(" ");
+                }
+                System.out.println();
+            }
+            System.out.println();
+        }
+
+    }
+
+    static void output2(int[][][] matx, int n, int m, int H) {
+        System.out.println();
+        for (int z = 0; z < H; z++) {
+            for (int j = 0; j < n; j++) {
+                for (int i = 0; i < m; i++) {
+                    System.out.print(matx[i][j][z]);
+                    System.out.print(" ");
+                }
+                System.out.println();
+            }
+            System.out.println();
+        }
+
+    }
+
+    static int min2(int a, int b) {
+        if (a < b)
+            return a;
+        else
+            return b;
+    }
+
+    static int min3(int a, int b, int c) {
+        int num1 = min2(a, b);
+        int min = min2(num1, c);
+        return min;
+    }
+
+    static int min4(int a, int b, int c, int d) {
+        int num1 = min2(a, b);
+        int num2 = min2(c, d);
+        int min = min2(num1, num2);
+        return min;
+    }
+
+    static int min5(int a, int b, int c, int d, int e) {
+        int num1 = min2(a, b);
+        int num2 = min2(c, d);
+        int min = min2(num1, num2);
+        min = min2(min, e);
+        return min;
+    }
+
+    static int max2(int a, int b) {
+        if (a > b)
+            return a;
+        else
+            return b;
+    }
+
+    static void matr_vvod(int[][][] matr, int n, int m, int h) {
+        for (int z = 0; z < n; z++) {
+            for (int j = 0; j < n; j++) {
+                for (int i = 0; i < m; i++) {
+                    matr[i][j][z] = 2147480000;
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        int[][] massiv_level;
+        int level;
+        int H = 0;
+        int n = 0;
+        int m = 0;
+        int sec = 5;
+        int time = 0;
+        int[] first_str = new int[3];
+        Scanner scanner = new Scanner(new File("INPUT.txt"));
+        int[] tall = new int[100];
+        for (int i = 0; i < 3; i++) {
+            first_str[i] = scanner.nextInt();
+            //System.out.print(first_str[i]+" ");
+        }
+        System.out.println();
+        H = first_str[0];
+        n = first_str[1];
+        m = first_str[2];
+        String[][][] matrix = new String[n][m][H];
+        String tochka = ".";
+
+        for (int z = 0; z < H; z++) {
+            for (int j = 0; j < n; j++) {
+                for (int i = 0; i < m; i++) {
+                    matrix[i][j][z] = String.valueOf(scanner.next().charAt(0));
+                }
+            }
+
+        }
+
+        int metkaH = 0;
+        int metkan = 0;
+        int metkam = 0;
+        int rasstoyanie;
+        rasstoyanie = (H - metkaH) - (n - metkan) - (m - metkam);
+        int[][][] matrix2 = new int[n][m][H];
+        matr_vvod(matrix2, n, m, H);
+        matrix2[0][0][0] = 1;
+        for (int k = 0; k < 2; k++) {
+            for (int z = 0; z < H; z++) {
+                for (int j = 0; j < n; j++) {
+                    for (int i = 0; i < m; i++) {
+                        if (matrix[i][j][z].equals(".")) {
+                            matrix2[i][j][z] = 1 + min5(matrix2[max2(i - 1, 0)][j][z], matrix2[min2(i + 1, m - 1)][j][z], matrix2[i][max2(j - 1, 0)][z], 
+                            matrix2[i][min2(j + 1, n - 1)][z], matrix2[i][j][max2(z - 1, 0)]);
+                        }
+                    }
+                }
+                for (int j = 0; j < n; j++) {
+                    for (int i = m - 1; i > 0; i--) {
+                        if (matrix[i][j][z].equals(".")) {
+                            matrix2[i][j][z] = 1 + min5(matrix2[max2(i - 1, 0)][j][z], matrix2[min2(i + 1, m - 1)][j][z], matrix2[i][max2(j - 1, 0)][z], 
+                            matrix2[i][min2(j + 1, n - 1)][z], matrix2[i][j][max2(z - 1, 0)]);
+                        }
+                    }
+                }
+                for (int j = n - 1; j > 0; j--) {
+                    for (int i = 0; i < m; i++) {
+                        if (matrix[i][j][z].equals(".")) {
+                            matrix2[i][j][z] = 1 + min5(matrix2[max2(i - 1, 0)][j][z], matrix2[min2(i + 1, m - 1)][j][z], matrix2[i][max2(j - 1, 0)][z],
+                            matrix2[i][min2(j + 1, n - 1)][z], matrix2[i][j][max2(z - 1, 0)]);
+                        }
+                    }
+                }
+                for (int j = n - 1; j > 0; j--) {
+                    for (int i = m - 1; i > 0; i--) {
+                        if (matrix[i][j][z].equals(".")) {
+                            matrix2[i][j][z] = 1 + min5(matrix2[max2(i - 1, 0)][j][z], matrix2[min2(i + 1, m - 1)][j][z], matrix2[i][max2(j - 1, 0)][z], 
+                            matrix2[i][min2(j + 1, n - 1)][z], matrix2[i][j][max2(z - 1, 0)]);
+                        }
+                    }
+                }
+            }
+        }
+        //System.out.println(min3(matrix2[m - 2][n - 1][H - 1], matrix2[m - 1][n - 2][H - 1], matrix2[m - 1][n - 1][H - 2]) + " steps");
+        System.out.println(min3(matrix2[m - 2][n - 1][H - 1], matrix2[m - 1][n - 2][H - 1], matrix2[m - 1][n - 1][H - 2]) * sec +
+                " seconds to goal");
+    }
+
+}
