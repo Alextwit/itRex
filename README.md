@@ -11,6 +11,7 @@ All the changes should be made in a strong order left-to-right.
 For example:
 
 The word “success” first of all will be the word “sukcess”. Then “suksess”.
+
 2) Remove a double letter
 
 If the text contains “ee” then replace it by simple “i”.
@@ -21,12 +22,14 @@ For example:
 “ooo” will be “uo”
 “oou” will be “u”
 “iee” will be “i”
+
 3) Remove the letter “e” at the end of each word
 
 Remove the letter “e” at the end of each word if the word length > 1.
 For example:
 
 “The” will be “Th”.
+
 4) Remove articles
 
 Remove the articles “a”, “an” or “the” from the text. They should be removed only if they were the words a, an, the in the original text.
