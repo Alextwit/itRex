@@ -1,4 +1,5 @@
 TASK 1
+
 Implement an algorithm that simplifies the English text. 
 
 1) Remove "c" from the text
@@ -75,6 +76,7 @@ Examples:
 Input:
 
 3 3 3
+
 1..
 
 oo.
