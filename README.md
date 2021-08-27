@@ -76,6 +76,7 @@ Output format:
 The minimum time the Prince has to find the Princess in seconds. As fairy tales always have happy ends it is guaranteed that the Prince can do it.
 
 Examples:
+
 Input:
 
 3 3 3
